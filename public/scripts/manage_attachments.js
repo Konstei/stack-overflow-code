@@ -144,26 +144,27 @@ function send_image_message(event) {
         const message_content = document.createElement("span");
         message_content.classList.add("sent-message");
         const input = divs[i].lastElementChild.firstElementChild.value;
+        const source = divs[i].firstElementChild.firstElementChild.src;
         const time = `${(new Date()).getHours()}:${(new Date()).getMinutes()}`;
         if (input != null  &&  input.trim() != "") {
             message_content.innerHTML =`<div class="image-message-content">
-                                            <div><img src="${divs[i].firstElementChild.firstElementChild.src}"></div>
+                                            <div><img src="${source}"></div>
                                             <p> ${input} </p>
                                         </div>
                                         <p class="image-time"> ${time} </p>`;
             message_object = {
                 message: input,
-                image: divs[i].firstElementChild.firstElementChild.src,
+                image: source,
                 time: time
             };
         } else {
             message_content.innerHTML =`<div class="image-content">
-                                            <div><img src="${divs[i].firstElementChild.firstElementChild.src}"></div>
+                                            <div><img src="${source}"></div>
                                         </div>
                                         <p class="image-time"> ${time} </p>`;
             message_object = {
                 message: null,
-                image: divs[i].firstElementChild.firstElementChild.src,
+                image: source,
                 time: time
             };
         }
@@ -174,7 +175,6 @@ function send_image_message(event) {
     }
     event.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.click();
     socket.emit("message-send", document.querySelector("#username").value, document.querySelectorAll(".active-contact-content")[0].id, message_list);
-    // socket.emit("message-send", document.querySelector("#username").value, undefined, message_list);
 }
 
 function recieve_image_message(sender, data) {
