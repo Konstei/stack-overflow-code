@@ -151,7 +151,7 @@ function add_contact() {
                                                     <div class="attach-menu">
                                                         <div>
                                                             <div class="attach-images" onclick="attach_images(event)"><ion-icon name="image-outline" color="secondary"></ion-icon></div>
-                                                            <input type="file" style="display:none;" accept="images/*">
+                                                            <input type="file" style="display:none;" accept="images/*" multiple>
                                                         </div>
                                                     </div>
                                                 </div>
